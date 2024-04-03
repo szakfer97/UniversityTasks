@@ -1,8 +1,7 @@
-#Aproximatii succesive pentru sisteme neliniare
-#Metoda Gauss-Seidel cu 3 parametrii
 import math
 
 def main():
+    print("Metoda Gauss-Seidel cu 3 parametrii")
     x = [0] * 100000
     y = [0] * 100000
     z = [0] * 100000

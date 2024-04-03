@@ -1,13 +1,10 @@
 import numpy as np
 
 def matrice_hermitica(matrice):
-    # Verifică dacă matricea este Hermitică
     return np.array_equal(matrice, np.conjugate(matrice).T)
 
-# Introducerea ordinului matricei
 ordin_matrice = int(input("Introduceti ordinul matricei: "))
 
-# Introducerea valorilor matricei
 valori_matrice = []
 for i in range(ordin_matrice):
     rand = []
@@ -18,10 +15,8 @@ for i in range(ordin_matrice):
         rand.append(valoare)
     valori_matrice.append(rand)
 
-# Convertirea listei de liste într-o matrice NumPy
 matrice = np.array(valori_matrice)
 
-# Verificare dacă matricea este Hermitică
 if matrice_hermitica(matrice):
     print("Matricea este Hermitică.")
 else:

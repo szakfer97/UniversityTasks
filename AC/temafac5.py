@@ -14,7 +14,6 @@ def inversa_triunghiulara(matrice):
 def este_inversa_triunghiulara(matrice, inversa):
     return este_triunghiulara(inversa)
 
-# Introducere matrice
 ordin_matrice = int(input("Introduceti ordinul matricei: "))
 valori_matrice = np.zeros((ordin_matrice, ordin_matrice))
 
@@ -25,12 +24,12 @@ for i in range(ordin_matrice):
 
 matrice = valori_matrice
 
-# Calcul inversa
 inversa = inversa_triunghiulara(matrice)
 
 if inversa is not None:
-    # Verifica daca inversa este triunghiulara
     if este_inversa_triunghiulara(matrice, inversa):
         print("Inversa matricei este tot triunghiulara.")
     else:
         print("Inversa matricei nu este triunghiulara.")
+
+

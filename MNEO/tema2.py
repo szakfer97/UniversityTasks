@@ -102,5 +102,3 @@ for eps in epsilons:
 # Afișare rezultate
 display_results("Rezultate pentru funcția f(x) = x^2 - 2:", results_sqrt2)
 display_results("Rezultate pentru funcția f(x) = x^3 - x - 1:", results_cubic)
-
-

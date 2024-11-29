@@ -71,8 +71,11 @@ def test_radicali():
         (2, 2),  # sqrt(2)
         (2, 3),  # sqrt(3)
         (2, 5),  # sqrt(5)
+        (2, 6),  # sqrt(6)
         (3, 2),  # cuberoot(2)
         (3, 3),  # cuberoot(3)
+        (3, 2),  # cuberoot(2)
+        (3, 4),  # cuberoot(4)
         (3, 1/2) # cuberoot(1/2)
     ]
 

@@ -1,19 +1,6 @@
 import math
 
 def metoda_newton(f, df, x0, eps):
-    """
-    Metodă generică Newton pentru găsirea rădăcinilor
-    
-    Parametri:
-    f: funcția pentru care căutăm rădăcina
-    df: derivata funcției
-    x0: punct inițial
-    eps: precizie dorită
-    
-    Returnează:
-    n: număr de iterații
-    x: rădăcina aproximată
-    """
     x = [x0]
     n = 0
     

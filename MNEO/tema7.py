@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 # Soluția exactă și funcția pentru prima problemă
 def exact_solution_1(x):
@@ -66,8 +67,8 @@ def euler_heun_method_2(h):
         y_values.append(y_values[-1] + h * 0.5 * (f2(x_values[i - 1], y_values[-1]) + f2(x_values[i], y_predict)))  # Corectarea
     return x_values, y_values
 
-# Calcul pentru h = 0.1
-h = 0.1
+# Calcul pentru h = 0.5
+h = 0.5
 
 # Aplicarea metodelor pentru problema 1
 x_euler_1, y_euler_1 = euler_method_1(h)
@@ -99,32 +100,38 @@ error_euler_2 = np.abs(y_exact_2 - y_euler_2)
 error_mod_euler_2 = np.abs(y_exact_mod_euler_2 - y_mod_euler_2)
 error_euler_heun_2 = np.abs(y_exact_euler_heun_2 - y_euler_heun_2)
 
-# Compararea rezultatelor pentru problema 1
-print("Rezultate pentru Problema 1 (h = 0.1):")
-print("\nMetoda Euler - valori aproximative:", y_euler_1)
-print("Metoda Euler - soluții exacte:", y_exact_1)
+# Printeaza valorile erorilor as
+print("Rezultate pentru Problema 1 (h = 0.5):")
 print("Metoda Euler - erori:", error_euler_1)
-
-print("\nMetoda Modificată a lui Euler - valori aproximative:", y_mod_euler_1)
-print("Metoda Modificată a lui Euler - soluții exacte:", y_exact_mod_euler_1)
 print("Metoda Modificată a lui Euler - erori:", error_mod_euler_1)
-
-print("\nMetoda Euler-Heun - valori aproximative:", y_euler_heun_1)
-print("Metoda Euler-Heun - soluții exacte:", y_exact_euler_heun_1)
 print("Metoda Euler-Heun - erori:", error_euler_heun_1)
 
-# Compararea rezultatelor pentru problema 2
-print("\nRezultate pentru Problema 2 (h = 0.1):")
-print("\nMetoda Euler - valori aproximative:", y_euler_2)
-print("Metoda Euler - soluții exacte:", y_exact_2)
+print("Rezultate pentru Problema 2 (h = 0.5):")
 print("Metoda Euler - erori:", error_euler_2)
-
-print("\nMetoda Modificată a lui Euler - valori aproximative:", y_mod_euler_2)
-print("Metoda Modificată a lui Euler - soluții exacte:", y_exact_mod_euler_2)
 print("Metoda Modificată a lui Euler - erori:", error_mod_euler_2)
-
-print("\nMetoda Euler-Heun - valori aproximative:", y_euler_heun_2)
-print("Metoda Euler-Heun - soluții exacte:", y_exact_euler_heun_2)
 print("Metoda Euler-Heun - erori:", error_euler_heun_2)
 
+# Plot pentru Problema 1
+plt.figure(figsize=(12, 8))
+plt.subplot(2, 1, 1)
+plt.plot(x_euler_1, y_euler_1, label='Euler Method', marker='o')
+plt.plot(x_euler_1, y_exact_1, label='Exact Solution', linestyle='dashed')
+plt.plot(x_mod_euler_1, y_mod_euler_1, label='Modified Euler Method', marker='x')
+plt.plot(x_euler_heun_1, y_euler_heun_1, label='Euler-Heun Method', marker='s')
+plt.title('Problema 1: Comparam metodele')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.legend()
+
+# Plot pentru Problema 2
+plt.subplot(2, 1, 2)
+plt.plot(x_euler_2, y_euler_2, label='Euler Method', marker='o')
+plt.plot(x_euler_2, y_exact_2, label='Exact Solution', linestyle='dashed')
+plt.plot(x_mod_euler_2, y_mod_euler_2, label='Modified Euler Method', marker='x')
+plt.plot(x_euler_heun_2, y_euler_heun_2, label='Euler-Heun Method', marker='s')
+plt.title('Problema 2: Comparam metodele')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.legend()
+plt.show()
 

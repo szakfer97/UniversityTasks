@@ -1,6 +1,5 @@
 import math
 
-# Definirea funcțiilor și derivatelor acestora
 def f_sqrt2(x):
     return x**2 - 2
 
@@ -13,7 +12,6 @@ def f_cubic(x):
 def df_cubic(x):
     return 3 * x**2 - 1
 
-# Metoda secantei
 def secant_method(x0, x1, epsilon, func):
     iterations = 0
     while abs(func(x1)) > epsilon:
@@ -25,7 +23,6 @@ def secant_method(x0, x1, epsilon, func):
         iterations += 1
     return x1, iterations
 
-# Metoda tangentei (Newton-Raphson)
 def newton_method(x0, epsilon, func, dfunc):
     iterations = 0
     while abs(func(x0)) > epsilon:
@@ -33,10 +30,8 @@ def newton_method(x0, epsilon, func, dfunc):
         iterations += 1
     return x0, iterations
 
-# Valorile pentru epsilon
 epsilons = [10**-4, 10**-8, 10**-12]
 
-# Funcție pentru afișarea rezultatelor
 def display_results(title, results):
     print(title)
     for result in results:
@@ -51,17 +46,14 @@ def display_results(title, results):
         print(f"    Eroare: {result['newton_error']}")
         print()
 
-# Rezolvarea pentru f(x) = x^2 - 2
 x0_secant, x1_secant = 2, 1.4
 x0_newton = 2
 results_sqrt2 = []
 
 for eps in epsilons:
-    # Metoda secantei
     root_secant, iter_secant = secant_method(x0_secant, x1_secant, eps, f_sqrt2)
     error_secant = abs(math.sqrt(2) - root_secant)
     
-    # Metoda tangentei
     root_newton, iter_newton = newton_method(x0_newton, eps, f_sqrt2, df_sqrt2)
     error_newton = abs(math.sqrt(2) - root_newton)
     
@@ -75,17 +67,14 @@ for eps in epsilons:
         "newton_error": error_newton
     })
 
-# Rezolvarea pentru f(x) = x^3 - x - 1
 x0_secant_cubic, x1_secant_cubic = 2, 1.5
 x0_newton_cubic = 2
 results_cubic = []
 
 for eps in epsilons:
-    # Metoda secantei
     root_secant_cubic, iter_secant_cubic = secant_method(x0_secant_cubic, x1_secant_cubic, eps, f_cubic)
     error_secant_cubic = abs(root_secant_cubic - 1.324717957244746)  # Valoarea exactă
     
-    # Metoda tangentei
     root_newton_cubic, iter_newton_cubic = newton_method(x0_newton_cubic, eps, f_cubic, df_cubic)
     error_newton_cubic = abs(root_newton_cubic - 1.324717957244746)  # Valoarea exactă
     
@@ -99,6 +88,5 @@ for eps in epsilons:
         "newton_error": error_newton_cubic
     })
 
-# Afișare rezultate
 display_results("Rezultate pentru funcția f(x) = x^2 - 2:", results_sqrt2)
 display_results("Rezultate pentru funcția f(x) = x^3 - x - 1:", results_cubic)

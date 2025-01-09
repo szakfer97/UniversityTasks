@@ -1,21 +1,18 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Soluția exactă și funcția pentru prima problemă
 def exact_solution_1(x):
     return x**2 - 2*x + 2 - np.exp(-x)
 
 def f1(x, y):
     return x**2 - y
 
-# Soluția exactă și funcția pentru a doua problemă
 def exact_solution_2(x):
     return 2 * np.exp(x) - x - 1
 
 def f2(x, y):
     return y + x
 
-# Metoda lui Euler pentru prima problemă
 def euler_method_1(h):
     x_values = np.arange(0, 4 + h, h)
     y_values = [1]
@@ -23,7 +20,6 @@ def euler_method_1(h):
         y_values.append(y_values[-1] + h * f1(x_values[i - 1], y_values[-1]))
     return x_values, y_values
 
-# Metoda lui Euler pentru a doua problemă
 def euler_method_2(h):
     x_values = np.arange(0, 1 + h, h)
     y_values = [1]
@@ -31,76 +27,63 @@ def euler_method_2(h):
         y_values.append(y_values[-1] + h * f2(x_values[i - 1], y_values[-1]))
     return x_values, y_values
 
-# Metoda modificată a lui Euler (Heun) pentru prima problemă
 def modified_euler_method_1(h):
     x_values = np.arange(0, 4 + h, h)
     y_values = [1]
     for i in range(1, len(x_values)):
-        y_predict = y_values[-1] + h * f1(x_values[i - 1], y_values[-1])  # Predicția folosind Euler
-        y_values.append(y_values[-1] + h * 0.5 * (f1(x_values[i - 1], y_values[-1]) + f1(x_values[i], y_predict)))  # Corectarea
+        y_predict = y_values[-1] + h * f1(x_values[i - 1], y_values[-1])
+        y_values.append(y_values[-1] + h * 0.5 * (f1(x_values[i - 1], y_values[-1]) + f1(x_values[i], y_predict)))
     return x_values, y_values
 
-# Metoda modificată a lui Euler (Heun) pentru a doua problemă
 def modified_euler_method_2(h):
     x_values = np.arange(0, 1 + h, h)
     y_values = [1]
     for i in range(1, len(x_values)):
-        y_predict = y_values[-1] + h * f2(x_values[i - 1], y_values[-1])  # Predicția folosind Euler
-        y_values.append(y_values[-1] + h * 0.5 * (f2(x_values[i - 1], y_values[-1]) + f2(x_values[i], y_predict)))  # Corectarea
+        y_predict = y_values[-1] + h * f2(x_values[i - 1], y_values[-1])
+        y_values.append(y_values[-1] + h * 0.5 * (f2(x_values[i - 1], y_values[-1]) + f2(x_values[i], y_predict)))
     return x_values, y_values
 
-# Metoda Euler-Heun pentru prima problemă
 def euler_heun_method_1(h):
     x_values = np.arange(0, 4 + h, h)
     y_values = [1]
     for i in range(1, len(x_values)):
-        y_predict = y_values[-1] + h * f1(x_values[i - 1], y_values[-1])  # Predicția folosind Euler
-        y_values.append(y_values[-1] + h * 0.5 * (f1(x_values[i - 1], y_values[-1]) + f1(x_values[i], y_predict)))  # Corectarea
+        y_predict = y_values[-1] + h * f1(x_values[i - 1], y_values[-1]) 
+        y_values.append(y_values[-1] + h * 0.5 * (f1(x_values[i - 1], y_values[-1]) + f1(x_values[i], y_predict)))
     return x_values, y_values
 
-# Metoda Euler-Heun pentru a doua problemă
 def euler_heun_method_2(h):
     x_values = np.arange(0, 1 + h, h)
     y_values = [1]
     for i in range(1, len(x_values)):
-        y_predict = y_values[-1] + h * f2(x_values[i - 1], y_values[-1])  # Predicția folosind Euler
-        y_values.append(y_values[-1] + h * 0.5 * (f2(x_values[i - 1], y_values[-1]) + f2(x_values[i], y_predict)))  # Corectarea
+        y_predict = y_values[-1] + h * f2(x_values[i - 1], y_values[-1])
+        y_values.append(y_values[-1] + h * 0.5 * (f2(x_values[i - 1], y_values[-1]) + f2(x_values[i], y_predict))) 
     return x_values, y_values
 
-# Calcul pentru h = 0.5
 h = 0.5
-
-# Aplicarea metodelor pentru problema 1
 x_euler_1, y_euler_1 = euler_method_1(h)
 x_mod_euler_1, y_mod_euler_1 = modified_euler_method_1(h)
 x_euler_heun_1, y_euler_heun_1 = euler_heun_method_1(h)
 
-# Aplicarea metodelor pentru problema 2
 x_euler_2, y_euler_2 = euler_method_2(h)
 x_mod_euler_2, y_mod_euler_2 = modified_euler_method_2(h)
 x_euler_heun_2, y_euler_heun_2 = euler_heun_method_2(h)
 
-# Calcularea soluțiilor exacte pentru problema 1
 y_exact_1 = exact_solution_1(x_euler_1)
 y_exact_mod_euler_1 = exact_solution_1(x_mod_euler_1)
 y_exact_euler_heun_1 = exact_solution_1(x_euler_heun_1)
 
-# Calcularea soluțiilor exacte pentru problema 2
 y_exact_2 = exact_solution_2(x_euler_2)
 y_exact_mod_euler_2 = exact_solution_2(x_mod_euler_2)
 y_exact_euler_heun_2 = exact_solution_2(x_euler_heun_2)
 
-# Calcularea erorii pentru fiecare metodă în problema 1
 error_euler_1 = np.abs(y_exact_1 - y_euler_1)
 error_mod_euler_1 = np.abs(y_exact_mod_euler_1 - y_mod_euler_1)
 error_euler_heun_1 = np.abs(y_exact_euler_heun_1 - y_euler_heun_1)
 
-# Calcularea erorii pentru fiecare metodă în problema 2
 error_euler_2 = np.abs(y_exact_2 - y_euler_2)
 error_mod_euler_2 = np.abs(y_exact_mod_euler_2 - y_mod_euler_2)
 error_euler_heun_2 = np.abs(y_exact_euler_heun_2 - y_euler_heun_2)
 
-# Printeaza valorile erorilor as
 print("Rezultate pentru Problema 1 (h = 0.5):")
 print("Metoda Euler - erori:", error_euler_1)
 print("Metoda Modificată a lui Euler - erori:", error_mod_euler_1)
@@ -111,7 +94,6 @@ print("Metoda Euler - erori:", error_euler_2)
 print("Metoda Modificată a lui Euler - erori:", error_mod_euler_2)
 print("Metoda Euler-Heun - erori:", error_euler_heun_2)
 
-# Plot pentru Problema 1
 plt.figure(figsize=(12, 8))
 plt.subplot(2, 1, 1)
 plt.plot(x_euler_1, y_euler_1, label='Euler Method', marker='o')
@@ -123,7 +105,6 @@ plt.xlabel('x')
 plt.ylabel('y')
 plt.legend()
 
-# Plot pentru Problema 2
 plt.subplot(2, 1, 2)
 plt.plot(x_euler_2, y_euler_2, label='Euler Method', marker='o')
 plt.plot(x_euler_2, y_exact_2, label='Exact Solution', linestyle='dashed')
@@ -134,4 +115,3 @@ plt.xlabel('x')
 plt.ylabel('y')
 plt.legend()
 plt.show()
-
